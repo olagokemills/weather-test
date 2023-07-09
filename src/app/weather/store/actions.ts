@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Weather,TemperatureData } from '../../model/weather.model';
+import { TemperatureData } from '../../model/weather.model';
 
 export const fetchData = createAction('[Data] Fetch Data', props<{ param: string }>());
 export const fetchDataSuccess = createAction(

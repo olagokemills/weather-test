@@ -4,9 +4,6 @@
     background-color: #DDEEF5;
     padding: 2rem;
     overflow: hidden;
-    .header-text{
-        color: #000F26;
-    }
     .form__wrapper{
         display: flex;
         justify-content: center;
@@ -62,10 +59,14 @@
 }
 .table-borderless{
     border-collapse: collapse;
+    .table__inner{
+        display: flex;
+        align-items: center;
+    }
 }
 
 .border-td > .table-borderless> tbody> tr> td{
-    border-bottom: 2px solid rgba(192,204,218,.3);
+    border-bottom: 3px solid rgba(192,204,218,.3);
     background-color: #fff;
     padding: 0.75rem;
     text-align: left;
@@ -74,9 +75,21 @@
     }
 }
 .border-td > .table-borderless > thead > tr > th{
-    border-bottom: 2px solid rgba(192,204,218,.3);
+    border-bottom: 3px solid rgba(192,204,218,.3);
     background-color: #fff;
     font-weight: 600;
     padding: 1rem 0.5rem;
     text-align: left;
+}
+
+.header__wrapper{
+    display: flex;
+    align-items: center;
+    .header-text{
+        color: #000F26;
+        padding-right: 0.25rem;
+    }
+    img{
+        width: 70px;
+    }
 }

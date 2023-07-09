@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Weather, TemperatureData } from '../../model/weather.model';
+import { TemperatureData } from '../../model/weather.model';
 import { fetchData, fetchDataSuccess, fetchDataFailure } from './actions';
 
 export interface DataState {

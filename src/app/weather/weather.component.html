@@ -1,5 +1,9 @@
 <div class="container">
-    <h3 class="header-text">Weather Checker Inc</h3>
+    <div class="header__wrapper">
+        <h3 class="header-text">Weather Checker Inc</h3>
+        <img src="assets/cloud.png" />
+    </div>
+    
     <div class="form__wrapper">
         <form class="form-inline mb-5">
             <div class="form-group">
@@ -35,8 +39,15 @@
                 </thead>
                 <tbody>
                 <tr *ngFor="let item of WeatherList; let i = index;">
-                  <td scope="row">{{item.city}}</td>
-                  <td *ngFor="let temperature of item.temperature">{{ temperature | kelvinToCelsius }} &deg;</td>
+                  <td scope="row">{{item.city}}, {{item.country}}</td>
+                  <td >
+                    <div class="table__inner">
+                        <span> 26&deg;</span>
+                        <img src="http://openweathermap.org/img/w/10d.png" alt="">
+                        <!-- {{ temperature.temp | kelvinToCelsius }} &deg;
+                        <img [src]="'http://openweathermap.org/img/w/' + temperature.icon + '.png'" />     -->
+                    </div>
+                  </td>
                 </tr>
                 </tbody>
             </table>

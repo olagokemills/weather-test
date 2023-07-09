@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { WeatherService } from './weather.service';
-import { UtilsService } from '../shared/utils.service';
-import { TemperatureData, Weather } from '../model/weather.model';
+import { TemperatureData } from '../model/weather.model';
 
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectNonNullData, selectTransformedData, selectDataError, selectDataLoading } from './store/selectors';
+import { selectTransformedData, selectDataError, selectDataLoading } from './store/selectors';
 import { fetchData } from './store/actions';
 
 @Component({
@@ -16,19 +14,11 @@ import { fetchData } from './store/actions';
 export class WeatherComponent implements OnInit {
 
   query:string = '';
- WeatherList:Array<Partial<TemperatureData>> = [];
- isLoading:boolean= false;
- errorMessage!:string;
-
-
-//  data$: Observable<TemperatureData>;
+  errorMessage!:string;
   loading: boolean = false;
   error$: Observable<string>;
-  //data$: Observable<TemperatureData[]>;
   data$: Observable<TemperatureData[] | null>;
   constructor(
-    private weatherService: WeatherService,
-    private utils:UtilsService,
     private store:Store
   ){
 
@@ -46,26 +36,6 @@ export class WeatherComponent implements OnInit {
     if(this.query === '')
     return this.showError('Please type in a city')
     this.store.dispatch(fetchData({param:this.query}));
-  }
-
-
-  searchWeather(){
-  if(this.query === '')
-  return this.showError('Please type in a city')
-    this.isLoading = !this.isLoading
-      this.weatherService.getWeatherData(this.query).subscribe(
-        res=>{
-          this.isLoading = false
-          if(res){
-            const filterData = this.utils.filerCurrentData(res.list)
-            this.WeatherList.push(this.utils.filterTimeAndTemperature(filterData,res.city))
-          }
-        },
-        err=>{
-          this.isLoading = false
-          this.showError('City not found, please try again')
-        }
-      )
   }
 
   showError(data:string){

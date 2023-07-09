@@ -8,15 +8,9 @@ import { City, WeatherList } from '../model/weather.model';
 export class UtilsService {
 
   constructor( 
-    private http: HttpClient,
   ) { }
 
-    extractDate(data:string){
-        const dateString = "2023-07-10 21:00:00";
-        const date = new Date(dateString);
-        const dateOnly = date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear();
-        return dateOnly   
-    }
+ 
     filerCurrentData(data:Array<WeatherList>){
         const currentDate = new Date();
         const filteredData = data.filter((item) => {
@@ -43,7 +37,7 @@ export class UtilsService {
             const time = itemDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // Format the time
             
             filteredTime.push(time);
-            filteredTemperature.push(item.main.temp);
+            filteredTemperature.push({temp:item.main.temp, icon:item?.weather[0].icon});
           }
         });
         return {

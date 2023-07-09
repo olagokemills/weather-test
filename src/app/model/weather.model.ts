@@ -65,9 +65,13 @@ export interface City {
   }
 
   export interface TemperatureData {
-    temperature: Array<number>;
+    temperature: SpecificTemperature[];
     time: string;
     city:string | null;
     country:string | null;
+  }
+  export interface SpecificTemperature{
+    icon:string,
+    temp:number
   }
   

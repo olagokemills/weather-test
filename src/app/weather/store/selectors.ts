@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { DataState } from './reducers';
-import { Weather, TemperatureData } from '../../model/weather.model';
+import { TemperatureData } from '../../model/weather.model';
 
 const getDataState = createFeatureSelector<DataState>('data');
 
@@ -23,17 +23,6 @@ export const selectDataError = createSelector(
 
 export const selectNonNullData = createSelector(selectData, (data) => data !== null ? data : undefined as unknown as TemperatureData[]);
 
-
-// Updated selector to select the transformedData property
-// export const selectTransformedData = createSelector(
-//     selectData,
-//     (data: TemperatureData[] | null) => data // Adjust this line based on your transformed data structure
-//   );
-
-// export const selectTransformedData = createSelector(
-//     selectData,
-//     (data: TemperatureData[] | null) => data // Adjust this line based on your transformed data structure
-//   );
 export const selectTransformedData = createSelector(
     selectData,
     (data) => data as TemperatureData[] | null
