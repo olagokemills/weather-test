@@ -1,0 +1,51 @@
+<div class="container">
+    <h3 class="header-text">Weather Checker Inc</h3>
+    <div class="form__wrapper">
+        <form class="form-inline mb-5">
+            <div class="form-group">
+              <input class="form-control"
+                     id="city"
+                     name="city"
+                     placeholder="City"
+                     type="text"
+                     [(ngModel)]="query"
+                     required>
+            </div>
+            <button class="btn-search btn btn-primary" type="submit" 
+                (click)="fetchData()">{{loading  ? 'Loading...':'Search'}}</button>
+        </form>
+       <div class="error__message">
+            <small *ngIf="error$ | async as error">{{errorMessage}}</small>
+       </div> 
+       <div *ngIf="error$ | async as error">{{ error }}</div>
+    </div>
+
+    <div *ngIf="data$ | async as WeatherList">
+        <div class="table-responsive border-td">
+            <table class="table table-borderless bg-whiteble">
+                <thead class="thead-dark">
+                <tr>
+                  <th scope="col">City</th>
+                  <ng-container  *ngFor="let item of WeatherList; let y = index;">
+                    <ng-container *ngIf="y === 0" >
+                        <th *ngFor="let time of item.time" >{{ time }}</th>
+                    </ng-container>
+                  </ng-container>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of WeatherList; let i = index;">
+                  <td scope="row">{{item.city}}</td>
+                  <td *ngFor="let temperature of item.temperature">{{ temperature | kelvinToCelsius }} &deg;</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+  
